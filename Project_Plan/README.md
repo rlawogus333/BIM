@@ -55,19 +55,4 @@
 
 ## 📐 시스템 아키텍처
 
-```mermaid
-graph TD
-    A[Claude Desktop - AI Orchestra] --> B[MCP Connection #1: revit-mcp]
-    A --> C[MCP Connection #2: FastAPI Server]
-    
-    subgraph "Revit Environment"
-    B --> D[Node.js Server]
-    D -- Socket -- > E[Revit Plugin]
-    E --> F[BIM Model Manipulation]
-    end
-    
-    subgraph "Logic & Rules"
-    C --> G[KDS/KEC DB]
-    C --> H[Lighting Calc Engine]
-    C --> I[Design Validator]
-    end
+<img width="563" height="614" alt="image" src="https://github.com/user-attachments/assets/1005e637-9525-463e-8254-4154e082471c" />
