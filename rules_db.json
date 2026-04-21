@@ -1,0 +1,742 @@
+{
+  "_meta": {
+    "version": "2.0.0",
+    "description": "지하철역 전기설비 BIM 자동화 규칙 데이터베이스 - Datas 폴더의 KDS/KEC/NFPC 원문 근거로 재정리",
+    "standards": [
+      "KDS 32 30 10 (옥내조명설비, 2024)",
+      "KDS 32 10 11 (전기설비 관련 시설공간)",
+      "KDS 32 20 20 (예비전원설비)",
+      "KDS 32 25 10 (간선 및 배선설비)",
+      "KDS 32 40 20 (접지설비)",
+      "KDS 47 40 45 (철도 전원설비, 2019)",
+      "KDS 47 40 50 (철도 신호기능실, 2019)",
+      "KDS 47 40 55 (철도 전선로, 2019)",
+      "KDS 47 40 70 (철도 보호설비, 2019)",
+      "KDS 47 40 75 (철도 안전설비, 2019)",
+      "KDS 31 10 20 (건축전기설비 일반사항)",
+      "KDS 31 10 21 (전기설비 관련 시설공간)",
+      "KEC 한국전기설비규정 (산업통상자원부)",
+      "NFPC 303 (유도등 및 유도표지의 화재안전성능기준, 2024.1.1 시행)",
+      "KS A 3011 (조도기준)",
+      "장애인·노인·임산부 등의 편의증진 보장에 관한 법률"
+    ],
+    "last_updated": "2026-04-18",
+    "author": "BIM Automation Project - 재현",
+    "source_notes": "값은 Datas/ 폴더 PDF·HWP 원문과 KS A 3011 조도기준표, 한국전기설비규정(KEC) 실무값을 교차 참조하여 확정. 조항 번호는 원문 표기 방식을 따름."
+  },
+  "spaces": {
+    "concourse": {
+      "space_key": "concourse",
+      "space_name_ko": "대합실",
+      "keywords": ["대합실", "concourse", "홀", "hall", "로비", "lobby", "개찰구", "매표"],
+      "lighting": {
+        "illuminance_lux": 300,
+        "illuminance_min_lux": 150,
+        "illuminance_max_lux": 600,
+        "emergency_lux": 30,
+        "uniformity_ratio": 0.4,
+        "color_rendering_index_ra": 80,
+        "color_temperature_K": 4000,
+        "mounting_height_m": 3.5,
+        "work_plane_height_m": 0.85,
+        "kds_ref": "KDS 32 30 10 4.3 (조도기준 KS A 3011 준용)",
+        "calc_method": "광속법 (KDS 32 30 10 4.7)"
+      },
+      "lighting_calc": {
+        "ceiling_reflectance": 0.7,
+        "wall_reflectance": 0.5,
+        "floor_reflectance": 0.2,
+        "maintenance_factor": 0.75,
+        "utilization_factor_range": [0.45, 0.65],
+        "flux_per_lamp_lm": 4000,
+        "lamps_per_fixture": 2,
+        "lamp_type": "LED",
+        "ks_ref": "KS C 7653 (매입형 및 고정형 LED 등기구)"
+      },
+      "outlets": {
+        "spacing_m": 5.0,
+        "height_from_floor_m": 0.3,
+        "circuit_type": "일반회로",
+        "circuit_ampere": 20,
+        "max_outlets_per_circuit": 10,
+        "kds_ref": "KDS 32 25 10 4.1.2 (분기회로 설계)",
+        "kec_ref": "KEC 234 (조명설비 분기회로)"
+      },
+      "emergency": {
+        "emergency_light_required": true,
+        "emergency_backup_minutes": 60,
+        "guidance_sign_required": true,
+        "guidance_spacing_m": 20.0,
+        "guidance_type": "거실통로유도등",
+        "guidance_mount_height_m": 1.5,
+        "exit_sign_mount_height_min_m": 1.5,
+        "fire_code_ref": "NFPC 303 제6조(통로유도등) 제10조(유도등의 전원)",
+        "note": "지하역사는 NFPC 303 제10조②에 따라 비상전원 60분 이상"
+      },
+      "cctv": {
+        "cctv_circuit": true,
+        "power_per_camera_w": 30,
+        "circuit_type": "전용회로",
+        "kds_ref": "KDS 31 10 21 4.5 (중앙감시실 CCTV 포함)"
+      },
+      "load": {
+        "design_load_w_m2": 30,
+        "power_factor": 0.9,
+        "demand_factor": 0.7
+      },
+      "special_requirements": {
+        "explosion_proof": false,
+        "ups_required": false,
+        "grounded": false,
+        "screen_door_power": false,
+        "barrier_free": true,
+        "barrier_free_ref": "장애인·노인·임산부 등의 편의증진 보장에 관한 법률 시행규칙 별표 1"
+      }
+    },
+    "platform": {
+      "space_key": "platform",
+      "space_name_ko": "승강장",
+      "keywords": ["승강장", "platform", "플랫폼", "스크린도어", "PSD"],
+      "lighting": {
+        "illuminance_lux": 200,
+        "illuminance_min_lux": 100,
+        "illuminance_max_lux": 400,
+        "emergency_lux": 20,
+        "uniformity_ratio": 0.4,
+        "color_rendering_index_ra": 80,
+        "color_temperature_K": 4000,
+        "mounting_height_m": 3.0,
+        "work_plane_height_m": 0,
+        "kds_ref": "KDS 32 30 10 4.3 / KS A 3011 (지하철 승강장 조도)",
+        "calc_method": "광속법 (KDS 32 30 10 4.7)"
+      },
+      "lighting_calc": {
+        "ceiling_reflectance": 0.7,
+        "wall_reflectance": 0.5,
+        "floor_reflectance": 0.2,
+        "maintenance_factor": 0.75,
+        "utilization_factor_range": [0.45, 0.65],
+        "flux_per_lamp_lm": 3200,
+        "lamps_per_fixture": 2,
+        "lamp_type": "LED"
+      },
+      "outlets": {
+        "spacing_m": 10.0,
+        "height_from_floor_m": 0.3,
+        "circuit_type": "일반회로",
+        "circuit_ampere": 20,
+        "max_outlets_per_circuit": 10,
+        "kds_ref": "KDS 32 25 10 4.1.2",
+        "kec_ref": "KEC 234"
+      },
+      "emergency": {
+        "emergency_light_required": true,
+        "emergency_backup_minutes": 60,
+        "guidance_sign_required": true,
+        "guidance_spacing_m": 20.0,
+        "guidance_type": "거실통로유도등",
+        "guidance_mount_height_m": 1.5,
+        "exit_sign_mount_height_min_m": 1.5,
+        "fire_code_ref": "NFPC 303 제6조·제10조",
+        "note": "지하역사는 비상전원 60분 이상 (NFPC 303 제10조②)"
+      },
+      "cctv": {
+        "cctv_circuit": true,
+        "power_per_camera_w": 30,
+        "circuit_type": "전용회로",
+        "kds_ref": "KDS 47 40 75 (철도 안전설비) / KDS 31 10 21 4.5"
+      },
+      "load": {
+        "design_load_w_m2": 25,
+        "power_factor": 0.9,
+        "demand_factor": 0.7
+      },
+      "special_requirements": {
+        "explosion_proof": false,
+        "ups_required": false,
+        "grounded": false,
+        "screen_door_power": true,
+        "screen_door_circuit_type": "전용회로",
+        "screen_door_power_w": 500,
+        "screen_door_kds_ref": "KDS 47 40 45 1.7 (철도 전원설비 - 무순단 전원공급)",
+        "barrier_free": true,
+        "barrier_free_ref": "장애인·노인·임산부 등의 편의증진 보장에 관한 법률"
+      }
+    },
+    "corridor": {
+      "space_key": "corridor",
+      "space_name_ko": "통로·계단",
+      "keywords": ["통로", "계단", "corridor", "stairs", "복도", "passage", "hallway", "에스컬레이터"],
+      "lighting": {
+        "illuminance_lux": 150,
+        "illuminance_min_lux": 75,
+        "illuminance_max_lux": 300,
+        "emergency_lux": 10,
+        "uniformity_ratio": 0.3,
+        "color_rendering_index_ra": 60,
+        "color_temperature_K": 4000,
+        "mounting_height_m": 2.5,
+        "work_plane_height_m": 0,
+        "kds_ref": "KDS 32 30 10 4.3 (복도·계단 조도 KS A 3011)",
+        "calc_method": "광속법 (KDS 32 30 10 4.7)"
+      },
+      "lighting_calc": {
+        "ceiling_reflectance": 0.7,
+        "wall_reflectance": 0.5,
+        "floor_reflectance": 0.2,
+        "maintenance_factor": 0.75,
+        "utilization_factor_range": [0.35, 0.55],
+        "flux_per_lamp_lm": 2400,
+        "lamps_per_fixture": 1,
+        "lamp_type": "LED"
+      },
+      "outlets": {
+        "spacing_m": 10.0,
+        "height_from_floor_m": 0.3,
+        "circuit_type": "일반회로",
+        "circuit_ampere": 20,
+        "kds_ref": "KDS 32 25 10 4.1.2",
+        "kec_ref": "KEC 234"
+      },
+      "emergency": {
+        "emergency_light_required": true,
+        "emergency_backup_minutes": 60,
+        "guidance_sign_required": true,
+        "guidance_spacing_m": 2.0,
+        "guidance_spacing_regulatory_max_m": 20.0,
+        "guidance_spacing_design_rationale": "NFPC 303 제6조1호나 규정 최대 20m이나, 본 프로젝트는 지하철역 피난 안전을 위해 2m 설계 간격 적용 (KDS 47 40 75 안전설비 원칙 준용)",
+        "guidance_type": "복도통로유도등",
+        "guidance_mount_height_max_m": 1.0,
+        "guidance_floor_install_required": true,
+        "guidance_floor_install_note": "지하역사는 NFPC 303 제6조1호다항 단서에 따라 복도·통로 중앙부분 바닥에 설치",
+        "stair_guidance_required": true,
+        "stair_guidance_note": "NFPC 303 제6조3호 계단통로유도등은 각층 계단참마다, 바닥 1m 이하",
+        "exit_sign_spacing_m": 15.0,
+        "fire_code_ref": "NFPC 303 제6조·제8조·제10조",
+        "note": "NFPC 303 기준 20m 간격이 최소이나, 지하역사 특성상 2m 간격으로 강화 설계"
+      },
+      "cctv": {
+        "cctv_circuit": false,
+        "power_per_camera_w": 0,
+        "circuit_type": null
+      },
+      "load": {
+        "design_load_w_m2": 15,
+        "power_factor": 0.9,
+        "demand_factor": 0.6
+      },
+      "special_requirements": {
+        "explosion_proof": false,
+        "ups_required": false,
+        "grounded": false,
+        "screen_door_power": false,
+        "barrier_free": true,
+        "handrail_lighting_recommended": true
+      }
+    },
+    "machinery": {
+      "space_key": "machinery",
+      "space_name_ko": "기계실",
+      "keywords": ["기계실", "machinery", "전기실", "설비실", "펌프실", "MDF", "EPS", "변전실", "신호기계실"],
+      "lighting": {
+        "illuminance_lux": 200,
+        "illuminance_min_lux": 100,
+        "illuminance_max_lux": 300,
+        "emergency_lux": 15,
+        "uniformity_ratio": 0.5,
+        "color_rendering_index_ra": 60,
+        "color_temperature_K": 4000,
+        "mounting_height_m": 3.0,
+        "work_plane_height_m": 0.85,
+        "kds_ref": "KDS 32 30 10 4.3 / KDS 31 10 21 4.1 (전기실)",
+        "calc_method": "광속법",
+        "kec_ref": "KEC 242.2 (폭발위험장소 조명)"
+      },
+      "lighting_calc": {
+        "ceiling_reflectance": 0.5,
+        "wall_reflectance": 0.3,
+        "floor_reflectance": 0.2,
+        "maintenance_factor": 0.70,
+        "utilization_factor_range": [0.30, 0.50],
+        "flux_per_lamp_lm": 3200,
+        "lamps_per_fixture": 1,
+        "lamp_type": "LED 방폭형",
+        "ks_ref": "KS C IEC 60079 (폭발성 분위기 전기기기)"
+      },
+      "outlets": {
+        "spacing_m": 5.0,
+        "height_from_floor_m": 0.3,
+        "circuit_type": "전용회로",
+        "circuit_ampere": 20,
+        "outlet_type": "방폭형",
+        "kec_ref": "KEC 242.2 (폭연성·가연성 분진 위험장소)"
+      },
+      "emergency": {
+        "emergency_light_required": true,
+        "emergency_backup_minutes": 60,
+        "guidance_sign_required": true,
+        "guidance_spacing_m": 15.0,
+        "guidance_type": "복도통로유도등",
+        "guidance_mount_height_max_m": 1.0,
+        "fire_code_ref": "NFPC 303 제6조·제8조"
+      },
+      "cctv": {
+        "cctv_circuit": false,
+        "power_per_camera_w": 0,
+        "circuit_type": null
+      },
+      "load": {
+        "design_load_w_m2": 20,
+        "power_factor": 0.85,
+        "demand_factor": 0.8
+      },
+      "special_requirements": {
+        "explosion_proof": true,
+        "explosion_proof_grade": "Ex e IIC T4 이상",
+        "ups_required": false,
+        "grounded": true,
+        "grounding_type": "보호접지 + 기능접지 통합",
+        "grounding_resistance_ohm_max": 10,
+        "screen_door_power": false,
+        "kec_ref": "KEC 140(접지시스템), KEC 142.6(주접지단자), KEC 242.2(폭발위험장소)",
+        "signal_room_note": "철도 신호기능실은 KDS 47 40 50 1.6 참조 (케이블 인입구 밀폐, 냉·난방 설치)",
+        "space_kds_ref": "KDS 31 10 21 4.1 (수변전실), 4.2 (발전기실), 4.3 (축전지실)"
+      }
+    },
+    "station_office": {
+      "space_key": "station_office",
+      "space_name_ko": "역무실",
+      "keywords": ["역무실", "station_office", "사무실", "office", "관제실", "control room", "운전취급실", "중앙감시실"],
+      "lighting": {
+        "illuminance_lux": 500,
+        "illuminance_min_lux": 300,
+        "illuminance_max_lux": 750,
+        "emergency_lux": 30,
+        "uniformity_ratio": 0.6,
+        "color_rendering_index_ra": 80,
+        "color_temperature_K": 4000,
+        "mounting_height_m": 2.7,
+        "work_plane_height_m": 0.85,
+        "kds_ref": "KDS 32 30 10 4.3 (사무실·관제실 500 lux)",
+        "kds_space_ref": "KDS 31 10 21 4.5.2 (중앙감시실 조도 KS A 3011)",
+        "calc_method": "광속법 (KDS 32 30 10 4.7)"
+      },
+      "lighting_calc": {
+        "ceiling_reflectance": 0.7,
+        "wall_reflectance": 0.5,
+        "floor_reflectance": 0.2,
+        "maintenance_factor": 0.80,
+        "utilization_factor_range": [0.50, 0.70],
+        "flux_per_lamp_lm": 4000,
+        "lamps_per_fixture": 2,
+        "lamp_type": "LED",
+        "tal_lighting_recommended": true,
+        "tal_note": "Task & Ambient Lighting 권장 (KDS 32 30 10 용어정의)"
+      },
+      "outlets": {
+        "spacing_m": 3.0,
+        "height_from_floor_m": 0.3,
+        "circuit_type": "전용회로",
+        "circuit_ampere": 20,
+        "ups_outlet_required": true,
+        "ups_outlet_color": "적색",
+        "kds_ref": "KDS 32 25 10 4.1.2 / KDS 32 20 20 4.3"
+      },
+      "emergency": {
+        "emergency_light_required": true,
+        "emergency_backup_minutes": 60,
+        "guidance_sign_required": true,
+        "guidance_spacing_m": 20.0,
+        "guidance_type": "거실통로유도등",
+        "guidance_mount_height_m": 1.5,
+        "fire_code_ref": "NFPC 303 제6조·제10조"
+      },
+      "cctv": {
+        "cctv_circuit": true,
+        "power_per_camera_w": 30,
+        "circuit_type": "UPS 전용회로",
+        "kds_ref": "KDS 31 10 21 4.5 (중앙감시실 CCTV)"
+      },
+      "load": {
+        "design_load_w_m2": 50,
+        "power_factor": 0.9,
+        "demand_factor": 0.8
+      },
+      "special_requirements": {
+        "explosion_proof": false,
+        "ups_required": true,
+        "ups_capacity_kva": 10,
+        "ups_backup_minutes": 30,
+        "ups_kds_ref": "KDS 32 20 20 4.3 (무정전전원장치) / KDS 47 40 45 1.7.1 (신호전원 무순단 공급)",
+        "ups_ks_ref": "KS C IEC 62040 (무정전전원장치)",
+        "grounded": true,
+        "grounding_type": "정보기기 기능접지",
+        "grounding_resistance_ohm_max": 10,
+        "screen_door_power": false,
+        "access_floor_recommended": true,
+        "access_floor_ref": "KDS 31 10 21 4.5.2 (이중바닥/액세스플로어)",
+        "barrier_free": false
+      }
+    }
+  },
+  "fixture_families": {
+    "ceiling_light": {
+      "fixture_type": "천장형 LED 등기구",
+      "revit_family_name": "Lighting Fixture - LED Ceiling",
+      "mount_face": "천장",
+      "space_keys": ["concourse", "platform", "station_office"],
+      "ks_ref": "KS C 7653 (매입형 및 고정형 LED 등기구)",
+      "note": "일반 조명기구, LED 사용 권장 (KDS 32 30 10 4.4.1)"
+    },
+    "explosion_proof_light": {
+      "fixture_type": "방폭형 LED 등기구",
+      "revit_family_name": "Lighting Fixture - Explosion Proof LED",
+      "mount_face": "천장",
+      "space_keys": ["machinery"],
+      "ks_ref": "KS C IEC 60079 (폭발성 분위기 전기기기)",
+      "kec_ref": "KEC 242.2",
+      "note": "Ex e IIC T4 이상 방폭 등급. KEC 242.2 폭발위험장소 전용"
+    },
+    "corridor_light": {
+      "fixture_type": "통로형 LED 등기구",
+      "revit_family_name": "Lighting Fixture - Corridor LED",
+      "mount_face": "천장",
+      "space_keys": ["corridor"],
+      "note": "통로·계단 전용, 센서 제어 권장 (KDS 32 30 10 1.4 스마트조명시스템)"
+    },
+    "emergency_light": {
+      "fixture_type": "비상조명등 (LED)",
+      "revit_family_name": "Emergency Lighting - LED Battery",
+      "mount_face": "천장",
+      "space_keys": ["concourse", "platform", "corridor", "machinery", "station_office"],
+      "ks_ref": "KS C 7654 (LED 비상 등기구의 안전 및 성능 요구사항)",
+      "note": "모든 공간 필수, 지하역사 비상전원 60분 이상 (NFPC 303 제10조)"
+    },
+    "exit_sign_corridor": {
+      "fixture_type": "복도통로유도등",
+      "revit_family_name": "Exit Sign - Corridor LED",
+      "mount_face": "벽·바닥",
+      "space_keys": ["corridor"],
+      "mount_height_max_m": 1.0,
+      "spacing_m": 20.0,
+      "floor_mount_required_underground": true,
+      "fire_code_ref": "NFPC 303 제6조1호",
+      "note": "지하역사는 복도 중앙 바닥 설치"
+    },
+    "exit_sign_room": {
+      "fixture_type": "거실통로유도등·피난구유도등",
+      "revit_family_name": "Exit Sign - Room LED",
+      "mount_face": "벽",
+      "space_keys": ["concourse", "platform", "station_office"],
+      "mount_height_min_m": 1.5,
+      "spacing_m": 20.0,
+      "fire_code_ref": "NFPC 303 제5조·제6조2호"
+    },
+    "exit_sign_stair": {
+      "fixture_type": "계단통로유도등",
+      "revit_family_name": "Exit Sign - Stair LED",
+      "mount_face": "벽",
+      "space_keys": ["corridor"],
+      "mount_height_max_m": 1.0,
+      "install_rule": "각층 계단참마다",
+      "fire_code_ref": "NFPC 303 제6조3호"
+    },
+    "guidance_sign_label": {
+      "fixture_type": "유도표지 (축광식)",
+      "revit_family_name": "Exit Sign - Label",
+      "mount_face": "벽·바닥",
+      "space_keys": ["corridor"],
+      "spacing_m": 15.0,
+      "mount_height_max_m": 1.0,
+      "fire_code_ref": "NFPC 303 제8조"
+    },
+    "outlet_standard": {
+      "fixture_type": "일반 콘센트 (220V 16A)",
+      "revit_family_name": "Electrical Outlet - Standard",
+      "mount_face": "벽",
+      "space_keys": ["concourse", "platform", "corridor"],
+      "mount_height_m": 0.3,
+      "kec_ref": "KEC 234"
+    },
+    "outlet_explosion_proof": {
+      "fixture_type": "방폭형 콘센트",
+      "revit_family_name": "Electrical Outlet - Explosion Proof",
+      "mount_face": "벽",
+      "space_keys": ["machinery"],
+      "mount_height_m": 0.3,
+      "kec_ref": "KEC 242.2",
+      "note": "Ex e IIC T4 이상"
+    },
+    "outlet_ups": {
+      "fixture_type": "UPS 전용 콘센트 (적색)",
+      "revit_family_name": "Electrical Outlet - UPS",
+      "mount_face": "벽",
+      "space_keys": ["station_office"],
+      "mount_height_m": 0.3,
+      "kds_ref": "KDS 32 20 20 4.3",
+      "note": "적색 식별, 전용회로"
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "V001",
+      "rule_name": "조도 기준 미달",
+      "description": "설계 조도가 공간 기준값(illuminance_lux)보다 낮을 경우 위반",
+      "applies_to": "all",
+      "check_field": "calculated_lux",
+      "condition": "calculated_lux < illuminance_lux",
+      "severity": "error",
+      "reference": "KDS 32 30 10 4.3 / KS A 3011",
+      "feedback_template": "{space_name} 공간의 설계 조도({calculated_lux}lux)가 KDS 32 30 10 기준({illuminance_lux}lux)에 미달합니다. 조명기구를 {shortfall_count}개 추가하거나 고출력 LED 기구(KS C 7653)로 교체하십시오."
+    },
+    {
+      "rule_id": "V002",
+      "rule_name": "통로·계단 유도등 간격 초과",
+      "description": "복도통로유도등 간격이 설계 기준(2m)을 초과할 경우 위반. 규제 최대는 NFPC 303의 20m이나 지하역사 강화설계로 2m 적용",
+      "applies_to": ["corridor"],
+      "check_field": "guidance_actual_spacing_m",
+      "condition": "guidance_actual_spacing_m > guidance_spacing_m",
+      "severity": "error",
+      "reference": "NFPC 303 제6조1호나 (최소기준 20m) + 프로젝트 설계기준(2m)",
+      "feedback_template": "통로·계단 복도통로유도등 간격({guidance_actual_spacing_m}m)이 프로젝트 설계 기준({guidance_spacing_m}m)을 초과합니다. NFPC 303 제6조 최소 20m를 준수하되, 지하역사 강화 설계로 2m마다 유도등을 설치하십시오."
+    },
+    {
+      "rule_id": "V003",
+      "rule_name": "방폭등 미설치 (기계실)",
+      "description": "기계실에 일반 조명기구 사용 시 위반",
+      "applies_to": ["machinery"],
+      "check_field": "fixture_type",
+      "condition": "fixture_type != 'explosion_proof_light'",
+      "severity": "error",
+      "reference": "KEC 242.2",
+      "feedback_template": "기계실에 방폭등(Ex e IIC T4 이상)이 설치되지 않았습니다. KEC 242.2(폭발위험장소)에 따라 방폭 조명기구(KS C IEC 60079)로 교체하십시오."
+    },
+    {
+      "rule_id": "V004",
+      "rule_name": "UPS 전원 미연결 (역무실)",
+      "description": "역무실 주요 전원이 UPS에 연결되지 않은 경우 위반",
+      "applies_to": ["station_office"],
+      "check_field": "ups_connected",
+      "condition": "ups_connected == false",
+      "severity": "error",
+      "reference": "KDS 32 20 20 4.3 / KDS 47 40 45 1.7.1",
+      "feedback_template": "역무실 전원이 UPS({ups_capacity_kva}kVA, {ups_backup_minutes}분)에 연결되지 않았습니다. KDS 32 20 20 4.3 및 KDS 47 40 45 1.7(무순단 전원공급)에 따라 UPS 전용회로를 구성하십시오."
+    },
+    {
+      "rule_id": "V005",
+      "rule_name": "CCTV 전용회로 미구성",
+      "description": "대합실·승강장 CCTV가 전용회로를 사용하지 않는 경우 위반",
+      "applies_to": ["concourse", "platform"],
+      "check_field": "cctv_circuit_dedicated",
+      "condition": "cctv_circuit_dedicated == false",
+      "severity": "warning",
+      "reference": "KDS 31 10 21 4.5 / KDS 47 40 75",
+      "feedback_template": "{space_name} CCTV 전원이 전용회로로 분리되지 않았습니다. 보안·철도안전장비(KDS 47 40 75) 전원 안정성을 위해 전용회로를 구성하십시오."
+    },
+    {
+      "rule_id": "V006",
+      "rule_name": "비상조명 조도 미달",
+      "description": "비상조명 조도가 기준값(emergency_lux)보다 낮을 경우 위반",
+      "applies_to": "all",
+      "check_field": "emergency_calculated_lux",
+      "condition": "emergency_calculated_lux < emergency_lux",
+      "severity": "error",
+      "reference": "NFPC 303 / KS C 7654",
+      "feedback_template": "{space_name} 비상조명 조도({emergency_calculated_lux}lux)가 기준({emergency_lux}lux)에 미달합니다. NFPC 303 및 KS C 7654에 따라 LED 비상 등기구를 추가 설치하십시오."
+    },
+    {
+      "rule_id": "V007",
+      "rule_name": "콘센트 간격 초과",
+      "description": "콘센트 간격이 공간 기준(outlet_spacing_m)을 초과할 경우 위반",
+      "applies_to": "all",
+      "check_field": "outlet_actual_spacing_m",
+      "condition": "outlet_actual_spacing_m > outlet_spacing_m",
+      "severity": "warning",
+      "reference": "KDS 32 25 10 4.1.2",
+      "feedback_template": "{space_name} 콘센트 간격({outlet_actual_spacing_m}m)이 기준({outlet_spacing_m}m)을 초과합니다. KDS 32 25 10에 따라 분기회로를 추가하여 콘센트를 보강하십시오."
+    },
+    {
+      "rule_id": "V008",
+      "rule_name": "접지 미설치 (기계실)",
+      "description": "기계실 접지가 설치되지 않은 경우 위반",
+      "applies_to": ["machinery"],
+      "check_field": "grounded",
+      "condition": "grounded == false",
+      "severity": "error",
+      "reference": "KEC 140·142 / KDS 32 40 20",
+      "feedback_template": "기계실에 보호접지(저항 10Ω 이하)가 설치되지 않았습니다. KEC 140(접지시스템) 및 KEC 142.6(주접지단자)에 따라 접지 공사를 시행하십시오."
+    },
+    {
+      "rule_id": "V009",
+      "rule_name": "지하역사 비상전원 백업시간 부족",
+      "description": "비상조명·유도등 비상전원 용량이 60분 미만일 경우 위반",
+      "applies_to": "all",
+      "check_field": "emergency_backup_actual_minutes",
+      "condition": "emergency_backup_actual_minutes < 60",
+      "severity": "error",
+      "reference": "NFPC 303 제10조②",
+      "feedback_template": "{space_name}의 비상전원 백업시간({emergency_backup_actual_minutes}분)이 지하역사 기준(60분)에 미달합니다. NFPC 303 제10조②에 따라 축전지 용량을 확대하십시오."
+    },
+    {
+      "rule_id": "V010",
+      "rule_name": "지하역사 복도 유도등 바닥 미설치",
+      "description": "지하역사 복도·통로에 바닥 매립형 유도등이 설치되지 않은 경우 위반",
+      "applies_to": ["corridor"],
+      "check_field": "guidance_floor_installed",
+      "condition": "guidance_floor_installed == false",
+      "severity": "warning",
+      "reference": "NFPC 303 제6조1호다 (단서)",
+      "feedback_template": "지하역사 복도·통로 중앙부분 바닥에 유도등이 설치되지 않았습니다. NFPC 303 제6조1호다 단서에 따라 하중에 견디는 바닥 매립형 유도등을 추가 설치하십시오."
+    },
+    {
+      "rule_id": "V011",
+      "rule_name": "스크린도어(PSD) 무순단 전원 미공급",
+      "description": "승강장 스크린도어가 UPS 또는 이중화 전원으로 공급되지 않는 경우 위반",
+      "applies_to": ["platform"],
+      "check_field": "psd_power_redundant",
+      "condition": "psd_power_redundant == false",
+      "severity": "error",
+      "reference": "KDS 47 40 45 1.7.1·1.7.2",
+      "feedback_template": "승강장 스크린도어(PSD) 전원이 무순단(UPS) 또는 상용·예비 이중화로 공급되지 않습니다. KDS 47 40 45 1.7(신호전원 공급·수전)에 따라 전용회로를 이중화하십시오."
+    },
+    {
+      "rule_id": "V012",
+      "rule_name": "유도등 설치 높이 미준수",
+      "description": "피난구유도등은 1.5m 이상, 복도통로·계단통로유도등은 1.0m 이하로 설치",
+      "applies_to": "all",
+      "check_field": "guidance_mount_height_m",
+      "condition": "type-specific (exit: >=1.5, corridor/stair: <=1.0)",
+      "severity": "warning",
+      "reference": "NFPC 303 제5조②·제6조1호다·제6조3호",
+      "feedback_template": "{space_name} 유도등 설치 높이가 NFPC 303 기준에 맞지 않습니다. 피난구유도등은 바닥 1.5m 이상, 복도·계단통로유도등은 1.0m 이하로 재설치하십시오."
+    }
+  ],
+  "lighting_formula": {
+    "method": "광속법 (Lumen Method)",
+    "method_ref": "KDS 32 30 10 4.7(2) - 실내전반 조명설계에 사용",
+    "formula": "N = (E × A) / (F × U × M)",
+    "variables": {
+      "N": "필요 조명기구 수 (개)",
+      "E": "설계 조도 (lux)",
+      "A": "공간 면적 (m²)",
+      "F": "조명기구당 총 광속 (lm) = flux_per_lamp_lm × lamps_per_fixture",
+      "U": "조명률 (utilization factor, CU) - 실지수와 반사율로 결정",
+      "M": "보수율 (maintenance factor, MF) - 청소주기·등기구 형태 반영"
+    },
+    "room_index_formula": "K = (L × W) / (H × (L + W))",
+    "room_index_variables": {
+      "K": "실지수 (room index)",
+      "L": "공간 길이 (m)",
+      "W": "공간 너비 (m)",
+      "H": "작업면에서 광원까지 높이 (m)"
+    },
+    "work_plane_note": "작업면 높이는 KDS 32 30 10 4.3(3)에 따라 일반 0.85m, 바닥 작업 0.4m, 복도·옥외는 바닥면 기준",
+    "alternative_method": {
+      "method": "축점법 (Point-by-Point)",
+      "use_case": "비상조명·국부조명·체육관·경기장 조도 계산",
+      "ref": "KDS 32 30 10 4.7(3)"
+    },
+    "cu_table_note": "조명률(U)은 실지수(K)와 천장·벽·바닥 반사율에 따라 0.3~0.7 범위 적용 (공간별 utilization_factor_range 참조)"
+  },
+  "standards_glossary": {
+    "KDS_32_30_10": {
+      "title": "옥내조명설비",
+      "year": 2024,
+      "issuer": "국토교통부",
+      "scope": "스마트조명시스템 포함 건축물 옥내 조명설비 설계",
+      "key_clauses": {
+        "4.3": "조도기준 선정 - KS A 3011",
+        "4.4": "광원 및 조명기구 선정 - LED 우선",
+        "4.5": "조명기구 수량 산정 - 조명률·보수율 반영",
+        "4.7": "조도계산 - 광속법/축점법",
+        "4.8": "분기회로 설계 - KDS 32 25 10 연계"
+      }
+    },
+    "KDS_32_20_20": {
+      "title": "예비전원설비",
+      "issuer": "국토교통부",
+      "scope": "자가발전설비, 축전지설비, UPS, 전기저장장치",
+      "key_clauses": {
+        "4.1": "자가발전설비 용량 산정 (P = PL + PM, 축전지충전용량 UPS용량의 6~10%)",
+        "4.2": "축전지설비 - 부하전류·사용시간 반영",
+        "4.3": "무정전전원장치(UPS) - KS C IEC 62040"
+      }
+    },
+    "KDS_32_25_10": {
+      "title": "간선 및 배선설비",
+      "issuer": "국토교통부",
+      "key_clauses": {
+        "4.1": "간선 및 배선설비의 설계 순서",
+        "4.1.2": "부하용량 및 설계전류 산출",
+        "4.3": "간선의 배선방식 - 개별/나뭇가지/병용",
+        "4.5": "과부하·지락·단락 보호 - KEC 113"
+      }
+    },
+    "KDS_47_40_45": {
+      "title": "철도 전원설비",
+      "year": 2019,
+      "issuer": "국토교통부",
+      "key_clauses": {
+        "1.6.1": "전원설비 구성 - 수전반, ATS, UPS, 정류기, 축전지, 신호배전반",
+        "1.7.1": "신호전원 공급 - 무순단 전원공급 (UPS)",
+        "1.7.2": "신호전원 수전 - 상용·예비 이중화 자동절체",
+        "1.7.3": "축전지 용량 - 정전예비시간·보수시간 고려"
+      }
+    },
+    "KDS_47_40_50": {
+      "title": "철도 신호기능실",
+      "year": 2019,
+      "key_clauses": {
+        "1.6.1": "신호계전기실 - 운전취급실과 동일 건물",
+        "1.6.3": "전원실 - 악세스 플로어",
+        "1.6.4": "케이블 인입개소 밀폐",
+        "1.6.5": "환경조건 적합 냉·난방"
+      }
+    },
+    "KDS_47_40_55": {
+      "title": "철도 전선로",
+      "year": 2019,
+      "key_clauses": {
+        "1.6.1": "터널·지하 구간: 저독성 난연 케이블 / 지상: 난연성 케이블",
+        "1.6.2": "회선 보호 - 전선관·트로프·케이블트레이"
+      }
+    },
+    "KEC": {
+      "title": "한국전기설비규정",
+      "issuer": "산업통상자원부",
+      "key_clauses": {
+        "113": "과부하·지락·단락 보호",
+        "140": "접지시스템",
+        "142.6": "주접지단자",
+        "232.4": "배선설비 외부영향",
+        "234": "조명설비 분기회로",
+        "242.2": "폭연성·가연성 분진 위험장소 (방폭)",
+        "244": "비상용 예비전원설비"
+      }
+    },
+    "NFPC_303": {
+      "title": "유도등 및 유도표지의 화재안전성능기준",
+      "year": 2024,
+      "issuer": "소방청",
+      "effective_date": "2024-01-01",
+      "key_clauses": {
+        "제5조": "피난구유도등 - 바닥 1.5m 이상",
+        "제6조1호": "복도통로유도등 - 20m마다, 1m 이하 (지하역사는 바닥 중앙)",
+        "제6조2호": "거실통로유도등 - 20m마다, 1.5m 이상",
+        "제6조3호": "계단통로유도등 - 각층 계단참마다, 1m 이하",
+        "제8조": "유도표지 - 15m 이하 간격",
+        "제10조①": "상용전원 - 전용 배선",
+        "제10조②": "비상전원 - 축전지 20분 이상, 지하층·11층 이상·지하역사·무창층은 60분 이상"
+      }
+    }
+  },
+  "compliance_matrix": {
+    "_description": "공간 × 주요 기준 빠른 참조 매트릭스 (validation_rules 보조)",
+    "columns": ["조도기준", "조명기구", "콘센트", "비상조명", "유도등", "접지", "UPS", "방폭", "CCTV"],
+    "concourse": ["KDS 32 30 10", "KS C 7653", "KDS 32 25 10", "NFPC 303", "NFPC 303 제6조2호", "-", "-", "-", "KDS 31 10 21 4.5"],
+    "platform": ["KDS 32 30 10", "KS C 7653", "KDS 32 25 10", "NFPC 303", "NFPC 303 제6조2호", "-", "KDS 47 40 45", "-", "KDS 47 40 75"],
+    "corridor": ["KDS 32 30 10", "KS C 7653", "KDS 32 25 10", "NFPC 303/KS C 7654", "NFPC 303 제6조1호·3호", "-", "-", "-", "-"],
+    "machinery": ["KDS 32 30 10", "KS C IEC 60079", "KEC 242.2", "NFPC 303", "NFPC 303 제6조1호", "KEC 140·142", "-", "KEC 242.2", "-"],
+    "station_office": ["KDS 32 30 10", "KS C 7653", "KDS 32 25 10", "NFPC 303", "NFPC 303 제6조2호", "KEC 140", "KDS 32 20 20", "-", "KDS 31 10 21 4.5"]
+  }
+}
