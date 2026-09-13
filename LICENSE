@@ -1,0 +1,33 @@
+MIT License
+
+Copyright (c) 2026 TEAM BEST (김재현, 김창민, 박환희, 이은준)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+NOTE / 주의
+
+본 라이선스는 이 저장소가 저작한 소스코드·문서에만 적용됩니다.
+다음 항목은 각 원저작자에게 저작권이 있으며, 참고·학술 목적으로만 포함되어 있습니다.
+
+- data/standards/   : KDS·KEC·NFPC 등 국가 표준 원문 (국토교통부·산업통상자원부·소방청)
+- data/stations/    : 서울교통공사 역사 건축정보 공공데이터
+- docs/references/  : 제3자 학술 논문
+- revit-mcp/*.zip   : mcp-servers-for-revit 프로젝트 배포본

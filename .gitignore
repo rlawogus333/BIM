@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# 환경변수 / 시크릿
+.env
+.env.local
+*.key
+claude_desktop_config.json
+
+# Revit / BIM 산출물
+*.rvt.bak
+*.0001.rvt
+*.rws
+Backup/
+*.slog
+*.dwl
+*.dwl2
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

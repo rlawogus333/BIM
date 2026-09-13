@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "subway-bim-fastapi": {
+      "command": "python",
+      "args": ["C:/dev/BIM/src/fastapi_mcp_wrapper.py"],
+      "env": {
+        "ANTHROPIC_API_KEY": "sk-ant-여기에-실제-키-입력",
+        "PYTHONIOENCODING": "utf-8"
+      }
+    },
+    "revit-mcp": {
+      "command": "node",
+      "args": ["C:/dev/revit-mcp/build/index.js"]
+    }
+  }
+}
